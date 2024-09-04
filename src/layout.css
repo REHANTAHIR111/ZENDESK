@@ -1,0 +1,13 @@
+@layer mantine, mantine-datatable;
+
+.mantine-MultiSelect-option {
+    font-size: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-weight: 600;
+}
+
+.mantine-Popover-dropdown {
+    background: #eff3f6;
+}
+
