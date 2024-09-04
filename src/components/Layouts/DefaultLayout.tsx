@@ -32,9 +32,9 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
     };
 
     useEffect(() => {
-        if (!localStorage.getItem("userid")) {
-            navigate("/admin/signin");
-        }
+        // if (!localStorage.getItem("userid")) {
+        //     navigate("/admin/signin");
+        // }
 
         window.addEventListener('scroll', onScrollHandler);
 
