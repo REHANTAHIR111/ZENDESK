@@ -60,17 +60,17 @@ const history = (props: any) => {
             }.bind(this),
             3000
         );
-        if (localStorage.getItem("permissions") != 'undefined' && localStorage.getItem("permissions") != null) {
-            var permisssion = JSON.parse(localStorage.getItem("permissions") || '{}')
-            if (permisssion) {
-                setpermissionsData(permisssion)
-                if (permisssion?.filter((item: { module: { code: string; }; view: number; }) => item?.module?.code == "order" && item?.view === 1).length <= 0) {
-                    navigate(-1)
-                }
-            }
-        } else {
-            navigate('/admin/signin')
-        }
+        // if (localStorage.getItem("permissions") != 'undefined' && localStorage.getItem("permissions") != null) {
+        //     var permisssion = JSON.parse(localStorage.getItem("permissions") || '{}')
+        //     if (permisssion) {
+        //         setpermissionsData(permisssion)
+        //         if (permisssion?.filter((item: { module: { code: string; }; view: number; }) => item?.module?.code == "order" && item?.view === 1).length <= 0) {
+        //             navigate(-1)
+        //         }
+        //     }
+        // } else {
+        //     navigate('/admin/signin')
+        // }
     }, [props]);
 
     useEffect(() => {

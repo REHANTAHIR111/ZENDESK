@@ -126,23 +126,23 @@ const Index = (props: any) => {
         endDate: new Date(),
         key: 'selection',
     }
-    useEffect(() => {
-        dispatch(setPageTitle('Sales Dashboard'));
-        var startdate = format(new Date(), 'yyyy-MM-dd')
-        var enddate = format(new Date(), 'yyyy-MM-dd')
-        getData(startdate + ' 00:00:00', enddate + ' 23:59:59')
-        if (localStorage.getItem("permissions") != 'undefined' && localStorage.getItem("permissions") != null) {
-            var permisssion = JSON?.parse(localStorage.getItem("permissions") || '{}')
-            if (permisssion && permisssion?.length >= 1) {
-                setpermissionsData(permisssion)
-                if (permisssion?.filter((item: { module: { code: string; }; view: number; }) => item?.module?.code == "sales" && item?.view === 1).length <= 0) {
-                    navigate(-1)
-                }
-            }
-        } else {
-            navigate('/admin/signin')
-        }
-    }, [props]);
+    // useEffect(() => {
+    //     dispatch(setPageTitle('Sales Dashboard'));
+    //     var startdate = format(new Date(), 'yyyy-MM-dd')
+    //     var enddate = format(new Date(), 'yyyy-MM-dd')
+    //     getData(startdate + ' 00:00:00', enddate + ' 23:59:59')
+    //     if (localStorage.getItem("permissions") != 'undefined' && localStorage.getItem("permissions") != null) {
+    //         var permisssion = JSON?.parse(localStorage.getItem("permissions") || '{}')
+    //         if (permisssion && permisssion?.length >= 1) {
+    //             setpermissionsData(permisssion)
+    //             if (permisssion?.filter((item: { module: { code: string; }; view: number; }) => item?.module?.code == "sales" && item?.view === 1).length <= 0) {
+    //                 navigate(-1)
+    //             }
+    //         }
+    //     } else {
+    //         navigate('/admin/signin')
+    //     }
+    // }, [props]);
 
     let totalAmountRecievedBox = 0;
     StatusData?.forEach((item: any, index: any) => {
