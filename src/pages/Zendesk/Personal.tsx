@@ -188,6 +188,12 @@ export default function Personal() {
                   setidleTime(false),
                   setemailRepo(false),
                   setLabs(false)
+                  setSelectedSound(false)
+                  setselectedSound2(false)
+                  setselectedSound3(false)
+                  setselectedSound4(false)
+                  setselectedSound5(false)
+                  setselectedSound6(false)
               }}>
                 Profile
               </button>
@@ -207,6 +213,12 @@ export default function Personal() {
                   setidleTime(true),
                   setemailRepo(false),
                   setLabs(false)
+                  setSelectedSound(false)
+                  setselectedSound2(false)
+                  setselectedSound3(false)
+                  setselectedSound4(false)
+                  setselectedSound5(false)
+                  setselectedSound6(false)
               }}>
                 Idle timeout
               </button>
@@ -217,6 +229,12 @@ export default function Personal() {
                   setidleTime(false),
                   setemailRepo(true),
                   setLabs(false)
+                  setSelectedSound(false)
+                  setselectedSound2(false)
+                  setselectedSound3(false)
+                  setselectedSound4(false)
+                  setselectedSound5(false)
+                  setselectedSound6(false)
               }}>
                 Email reports
               </button>
@@ -227,6 +245,12 @@ export default function Personal() {
                   setidleTime(false),
                   setemailRepo(false),
                   setLabs(true)
+                  setSelectedSound(false)
+                  setselectedSound2(false)
+                  setselectedSound3(false)
+                  setselectedSound4(false)
+                  setselectedSound5(false)
+                  setselectedSound6(false)
               }}>
                 Labs
               </button>
