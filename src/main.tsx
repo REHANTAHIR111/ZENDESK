@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import ReactDOM from 'react-dom/client'
 
 // Perfect Scrollbar
@@ -13,10 +13,13 @@ import './i18n';
 // Router
 import { RouterProvider } from 'react-router-dom';
 import router from './router/index';
+import { useNavigate } from 'react-router-dom';
 
 // Redux
 import { Provider } from 'react-redux';
 import store from './store/index';
+
+
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

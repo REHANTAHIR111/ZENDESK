@@ -266,11 +266,16 @@ export default function Personal() {
                       </div>
                       <div className='flex w-full font-normal text-[12.5px] mt-8'>
                           <label className='w-[22%]'>Name</label>
-                          <h3>Zac Ellis</h3>
+                          <h3>
+                            {localStorage.getItem('email')
+                              ? localStorage.getItem('email')!.split('@')[0]
+                              : 'Zac Ellis'
+                            }
+                          </h3>
                       </div>
                       <div className='flex w-full font-normal text-[12.5px] mt-6'>
                           <label className='w-[22%]'>Email</label>
-                          <h3>hdesign316@gmail.com</h3>
+                          <h3>{localStorage.getItem('email') ? localStorage.getItem('email') : 'hdesign316@gmail.com'}</h3>
                       </div>
                       <div className='flex w-full font-normal text-[12.5px] mt-6'>
                           <label className='w-[22%]'>Profile</label>

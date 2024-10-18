@@ -17,7 +17,6 @@ const Goals = lazy(() => import('../pages/Zendesk/Goals'));
 const Widget = lazy(() => import('../pages/Zendesk/Widget'));
 const Personal = lazy(() => import('../pages/Zendesk/Personal'));
 const Account = lazy(() => import('../pages/Zendesk/Account'));
-const Viewall = lazy(() => import('../pages/Zendesk/Viewall'));
 const AddDepartment = lazy(() => import('../pages/Zendesk/addDepartment'));
 const AddShortcut = lazy(() => import('../pages/Zendesk/addShortcut'));
 const EditShortcut = lazy(() => import('../pages/Zendesk/editShortcut'));
@@ -98,10 +97,6 @@ const routes = [
     {
         path: '/zendesk/account',
         element: <Account />,
-    },
-    {
-        path: '/zendesk/viewall',
-        element: <Viewall />,
     },
     {
         path: '/zendesk/department/add-departments',

@@ -11,6 +11,8 @@ const SignIn = () => {
     setShowPassword(!showPassword);
   };
 
+  localStorage.setItem('email',email)
+
   return (
     <div className="flex mt-20 justify-center">
       <div className="bg-white px-10 pt-8 pb-10 rounded-md w-full max-w-[25rem] border-[6px] border-[#E5E5E5]">
