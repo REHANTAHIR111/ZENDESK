@@ -164,8 +164,16 @@ export default function Widget() {
     }
   };
 
+  const getTextColor = () => {
+    if (changeColor === '#ffffff') {
+      return 'text-black';
+    } else {
+      return 'text-white';
+    }
+  };
+
   let CHAT = [
-    <div className='w-[30%]'>
+    <div className={`w-[30%] ${getTextColor()}`}>
       <div className='flex justify-between'>
         <h2 className='text-[1.2rem] text-[#4A4A4A] font-bold p-0 mt-9'>Preview</h2>
         <select id="countries" className="form-select rounded w-44 h-[1.9rem] py-0 mt-6 focusable focus:ring-offset-0 focus:ring-2 focus:outline-none focus:ring-info text-[13px] font-[600]" onChange={(e) => setSelect(e.target.value)}>
@@ -185,7 +193,7 @@ export default function Widget() {
         <div className={`shadow-md rounded-lg max-w-lg w-full ${select != 2 ? 'pb-2.5' : ''}`}>
           {select != 2 ?
 
-            <div className={`py-3 border-b text-current	rounded-t-lg flex justify-between items-center`} style={{ background: changeColor }}>
+            <div className={`py-3 border-b text-current	rounded-t-lg flex justify-between items-center ${getTextColor()}`} style={{ background: changeColor}}>
               <p className="text-[16px] font-bold w-full text-center">{topTile}</p>
               <button id="close-chat" className="text-gray-300 hover:text-gray-400 focus:outline-none focus:text-gray-400">
                 <IconMinus className='!text-white mr-6' />
@@ -197,19 +205,19 @@ export default function Widget() {
             <>
               <div id="chatbox" className="p-4 h-80 overflow-y-auto">
                 <div className="mb-2 text-right">
-                  <p className="text-current rounded-full py-2 px-4 inline-block" style={{ background: changeColor }}>I see. Yes please!</p>
+                  <p className="rounded-full py-2 px-4 inline-block" style={{ background: changeColor }}>I see. Yes please!</p>
                 </div>
                 <div className="mb-2">
                   <p className="bg-gray-200 text-gray-700 rounded-2xl py-2 px-4 inline-block leading-4">You're welcome. I’ll transfer <br /> you to the department now. <br /> Please wait for an agent to <br /> attend to you.</p>
                 </div>
                 <div className="mb-2 text-right">
-                  <p className="text-current rounded-full py-2 px-4 inline-block" style={{ background: changeColor }}>I see. Yes please! example of chat</p>
+                  <p className="rounded-full py-2 px-4 inline-block" style={{ background: changeColor }}>I see. Yes please! example of chat</p>
                 </div>
                 <div className="mb-2">
                   <p className="bg-gray-200 text-gray-700 rounded-2xl py-2 px-4 inline-block leading-4">You're welcome. I’ll transfer <br /> you to the department now. <br /> Please wait for an agent to <br /> attend to you.</p>
                 </div>
                 <div className="mb-2 text-right">
-                  <p className="text-current rounded-full py-2 px-4 inline-block" style={{ background: changeColor }}>I see. Yes please! example of chat</p>
+                  <p className="rounded-full py-2 px-4 inline-block" style={{ background: changeColor }}>I see. Yes please! example of chat</p>
                 </div>
                 <div className={`${rating ? 'mb-6' : 'mb-2'}`}>
                   <p className="bg-gray-200 text-gray-70 rounded-2xl py-2 px-4 inline-block leading-4">You're welcome. I’ll transfer <br /> you to the department now. <br /> Please wait for an agent to <br /> attend to you.</p>
