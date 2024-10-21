@@ -274,7 +274,7 @@ export default function Widget() {
                 <>
                   <div className='p-10 text-white rounded-t-lg relative flex justify-between h-40' style={{ backgroundImage: 'url("https://v2assets.zopim.io/JHCfOsl2bT75lsNA6tisF9vp3LQiGPaV-banner?1668554852212")' }}>
                     <span className='text-white absolute top-2 w-full ml-12'>zendesk chat</span>
-                    <span className='bg-white h-0.5 rounded w-3 absolute right-4 top-4'></span>
+                    <span className='text-white rounded relative h-6 w-10 items-center pl-3 text-center pt-0.5 left-44 bottom-9 ' style={{background:sameColor ? changeColor : changeBgColor}}><IconMinus/></span>
                   </div>
                   <div className="flex">
                     <input id="user-input" type="text" placeholder="Type your message here" className="w-full px-3 py-2.5 rounded-bl-lg rounded-t-0 focus:outline-none focus:border-[2.5px] focus:border-blue-300" />

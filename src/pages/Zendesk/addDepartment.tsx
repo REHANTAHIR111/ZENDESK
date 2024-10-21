@@ -60,7 +60,7 @@ export default function addDepartment() {
                 <hr className='bg-gray-200 mt-12' />
                 <div className='flex mt-4 flex gap-3'>
                     <button type='submit' className='py-1.5 px-3 bg-[#1F73B7] shadow-none text-white rounded font-bold'>Create department</button>
-                    <button className='py-1.5 px-3 border border-gray-300 hover:bg-gray-200 font-bold shadow-none rounded' type='button' onClick={() => navigate('/zendesk/departments')}>Cancel</button>
+                    <button className='py-1.5 px-3 border border-gray-300 hover:bg-gray-200 font-bold shadow-none rounded' type='button' onClick={() => {navigate('/zendesk/departments'), localStorage.setItem('header', 'Departments')}}>Cancel</button>
                 </div>
             </div>   
             <div className='w-56'>
