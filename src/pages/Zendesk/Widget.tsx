@@ -220,12 +220,12 @@ export default function Widget() {
                   <p className="rounded-full py-2 px-4 inline-block" style={{ background: changeColor }}>I see. Yes please! example of chat</p>
                 </div>
                 <div className={`${rating ? 'mb-6' : 'mb-2'}`}>
-                  <p className="bg-gray-200 text-gray-70 rounded-2xl py-2 px-4 inline-block leading-4">You're welcome. I’ll transfer <br /> you to the department now. <br /> Please wait for an agent to <br /> attend to you.</p>
+                  <p className="bg-gray-200 text-gray-700 rounded-2xl py-2 px-4 inline-block leading-4">You're welcome. I’ll transfer <br /> you to the department now. <br /> Please wait for an agent to <br /> attend to you.</p>
                 </div>
                 <>
                   {rating ?
                     <div className='flex justify-center'>
-                      <button className='mb-2 border border-black px-3.5 py-2.5 rounded-md hover:bg-black hover:text-white duration-300'>Rate this chat</button>
+                      <button className='mb-2 border border-black px-3.5 py-2.5 rounded-md text-black hover:bg-black hover:text-white duration-300'>Rate this chat</button>
                     </div>
                     : ''}
                 </>
@@ -237,15 +237,15 @@ export default function Widget() {
                 <h3 className='ml-4 text-gray-500'><a target='_blank' href="https://www.zendesk.com/service/messaging/live-chat-software/?iref=null&lang=en-us&utm_campaign=poweredbyzendesk&utm_content=undefined&utm_medium=poweredbyzendeskchat&utm_source=webwidgetchat&utm_term=null">Zendesk</a></h3>
                 <div className='flex gap-2 mr-4'>
                   <Tippy content='End chat' className='bg-[#03363D] text-white text-sm rounded px-2 pt-0.5 text-auto mr-16 mt-10 h-6 font-semibold'>
-                    <button className='hover:bg-gray-300 duration-150 p-1 rounded'>
+                    <button className='hover:bg-gray-300 text-black duration-150 p-1 rounded'>
                       <IconLogin />
                     </button>
                   </Tippy>
-                  <button className='hover:bg-gray-300 duration-150 p-1 rounded'>
+                  <button className='hover:bg-gray-300 text-black duration-150 p-1 rounded'>
                     <IconUrl />
                   </button>
                   <Tippy content='Options' className='bg-[#03363D] text-sm text-white rounded px-2 pt-0.5 text-auto mt-10 h-6 font-semibold'>
-                    <button className='hover:bg-gray-300 duration-150 p-1 rounded'>
+                    <button className='hover:bg-gray-300 text-black duration-150 p-1 rounded'>
                       <IconMore />
                     </button>
                   </Tippy>
