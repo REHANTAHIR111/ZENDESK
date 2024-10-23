@@ -85,28 +85,52 @@ const history = (props: any) => {
     ]
 
     //dropdown
-    const options: Option[] = [
-        { label: 'help_survey', value: 'help_survey' },
+    const [options, setOptions] = useState<Option[]>([
         { label: 'goodbye_survey', value: 'goodbye_survey' },
-        { label: 'customer_feedback', value: 'customer_feedback' },
-        { label: 'product_review', value: 'product_review' },
-    ];
+        { label: 'help_survey', value: 'help_survey' },
+        { label: 'returning_visitor', value: 'returning_visitor' }
+    ]);
 
+    const [searchTerm, setSearchTerm] = useState('');
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+    const [showDropdown, setShowDropdown] = useState(false);
 
-    const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedValue = event.target.value;
-        const selectedOption = options.find(option => option.value === selectedValue);
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value);
+    };
 
-        if (selectedOption && !selectedOptions.some(option => option.value === selectedValue)) {
-            setSelectedOptions([...selectedOptions, selectedOption]);
+    const handleSelect = (option: Option) => {
+        if (!selectedOptions.some((selected) => selected.value === option.value)) {
+            setSelectedOptions([...selectedOptions, option]);
         }
-        event.target.value = '';
+        setSearchTerm('');
+        setShowDropdown(false);
     };
 
     const handleRemove = (value: string) => {
         setSelectedOptions(selectedOptions.filter(option => option.value !== value));
     };
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter' && searchTerm.trim()) {
+            const newOption = { label: searchTerm.trim(), value: searchTerm.trim() };
+
+            if (!options.some(option => option.value === newOption.value)) {
+                setOptions([...options, newOption]);
+            }
+
+            if (!selectedOptions.some(option => option.value === newOption.value)) {
+                setSelectedOptions([...selectedOptions, newOption]);
+            }
+
+            setSearchTerm('');
+            setShowDropdown(false);
+        }
+    };
+
+    const filteredOptions = options.filter(option =>
+        option.label.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     useEffect(() => {
         dispatch(setPageTitle('History'));
@@ -349,7 +373,7 @@ const history = (props: any) => {
                     <div className="flex items-center w-max mx-auto gap-2">
                         <button
                             type="button"
-                            onClick={() => {setShowCustomizer(true), setTranscript(true)}}
+                            onClick={() => { setShowCustomizer(true), setTranscript(true) }}
                         >
                             <IconPencil />
                         </button>
@@ -388,7 +412,7 @@ const history = (props: any) => {
                                         </div>
                                         <div className='flex gap-3'>
                                             <button className='py-0.5 px-1.5 text-black duration-150 hover:border-gray-400 border hover:bg-gray-400 rounded' ><IconDownload className='w-4 h-4' /></button>
-                                            <button className='py-0.5 px-1.5 text-black duration-150 hover:border-gray-400 border hover:bg-gray-400 rounded-full' onClick={() => {setShowCustomizer(false), seteditTag(false), setTranscript(false), setuserInfo(false)}}><IconX className='w-4 h-4' /></button>
+                                            <button className='py-0.5 px-1.5 text-black duration-150 hover:border-gray-400 border hover:bg-gray-400 rounded-full' onClick={() => { setShowCustomizer(false), seteditTag(false), setTranscript(false), setuserInfo(false) }}><IconX className='w-4 h-4' /></button>
                                         </div>
                                     </div>
                                     {transcript ?
@@ -530,20 +554,34 @@ const history = (props: any) => {
                                             <hr className='bg-blue-500 h-0.5 w-40' />
                                             <hr className='bg-gray-200 h-0.5 w-full' />
                                         </div>
-                                        <select
-                                            onChange={handleSelect}
-                                            className="border appearance-none border-gray-300 py-1 px-1.5 rounded w-80"
-                                            defaultValue=""
-                                        >
-                                            <option value="" disabled>
-                                                Add chat tags
-                                            </option>
-                                            {options.map(option => (
-                                                <option key={option.value} value={option.value}>
-                                                    {option.label}
-                                                </option>
-                                            ))}
-                                        </select>
+                                        <div className='relative'>
+                                            <input
+                                                type="text"
+                                                value={searchTerm}
+                                                onChange={handleSearchChange}
+                                                onFocus={() => setShowDropdown(true)}
+                                                onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
+                                                onKeyDown={handleKeyDown}
+                                                placeholder="Add chat tags"
+                                                className="border appearance-none border-gray-300 py-1 px-1.5 rounded w-72 focus:outline-none duration-150 focus:border-blue-500"
+                                            />
+                                            {showDropdown && (
+                                                <ul className="border border-gray-300 rounded-md font-normal text-xs w-64 z-10">
+                                                    {filteredOptions.map(option => (
+                                                        <li
+                                                            key={option.value}
+                                                            onClick={() => handleSelect(option)}
+                                                            className="p-2 cursor-pointer hover:bg-gray-100"
+                                                        >
+                                                            {option.label}
+                                                        </li>
+                                                    ))}
+                                                    {filteredOptions.length === 0 && (
+                                                        <li className="p-2 text-gray-500">No results found</li>
+                                                    )}
+                                                </ul>
+                                            )}
+                                        </div>
                                         <div className="flex flex-wrap space-x-2">
                                             {selectedOptions.map(option => (
                                                 <div
