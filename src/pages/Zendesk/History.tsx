@@ -22,6 +22,7 @@ import IconEdit from '../../components/Icon/IconEdit';
 import IconMinus from '../../components/Icon/IconMinus';
 import IconProfile from '../../components/Icon/IconProfile';
 import IconUser from '../../components/Icon/IconUser';
+import Tippy from '@tippyjs/react';
 
 const history = (props: any) => {
 
@@ -429,7 +430,7 @@ const history = (props: any) => {
                                                 <div className="flex">
                                                     <label className="text-sm font-medium w-28">Tags</label>
                                                     <div>
-                                                        <button className="bg-gray-200 rounded p-1" onClick={() => { seteditTag(true), setTranscript(false), setuserInfo(false) }}><IconEdit /></button>
+                                                        <button className="border border-gray-200 rounded p-1 hover:bg-gray-200 duration-300" onClick={() => { seteditTag(true), setTranscript(false), setuserInfo(false) }}><IconPencil className='w-4 h-4' /></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -555,16 +556,18 @@ const history = (props: any) => {
                                             <hr className='bg-gray-200 h-0.5 w-full' />
                                         </div>
                                         <div className='relative'>
-                                            <input
-                                                type="text"
-                                                value={searchTerm}
-                                                onChange={handleSearchChange}
-                                                onFocus={() => setShowDropdown(true)}
-                                                onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
-                                                onKeyDown={handleKeyDown}
-                                                placeholder="Add chat tags"
-                                                className="border appearance-none border-gray-300 py-1 px-1.5 rounded w-72 focus:outline-none duration-150 focus:border-blue-500"
-                                            />
+                                            <Tippy content='Click to Edit' className='text-xs rounded px-1 mr-48 mt-48 font-semibold'>
+                                                <input
+                                                    type="text"
+                                                    value={searchTerm}
+                                                    onChange={handleSearchChange}
+                                                    onFocus={() => setShowDropdown(true)}
+                                                    onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
+                                                    onKeyDown={handleKeyDown}
+                                                    placeholder="Add chat tags"
+                                                    className="border appearance-none border-gray-300 py-1 px-1.5 rounded w-72 focus:outline-none duration-150 focus:border-blue-500"
+                                                />
+                                            </Tippy>
                                             {showDropdown && (
                                                 <ul className="border border-gray-300 rounded-md font-normal text-xs w-64 z-10">
                                                     {filteredOptions.map(option => (
@@ -612,165 +615,167 @@ const history = (props: any) => {
                     <div className="flex mb-3 gap-3">
                         <button className='rounded-l-full h-[29.1px] w-7 bg-[#E9EBED] pb-1 pt-1.5 relative bottom-[0.3px] left-3 px-2 font-bold relative' onClick={() => toggleShow('search')}><IconCaretDown /></button>
                         {show ?
-                            <ul className={`text-dark w-[420px] font-semibold border border-gray-300 !py-0 ${!offline || all ? 'overflow-y-scroll h-[40rem]' : 'h-[29.8rem]'} absolute z-10 bg-white mt-10`}>
-                                <div className='w-full flex pl-5 pt-5'>
-                                    <div className='w-[40%]'>
-                                        <h3 className='text-[13px] mt-1'>Search</h3>
-                                    </div>
-                                    <div>
-                                        <div className='w-[60%] flex'>
-                                            <button className={`btn btn-sm shadow-none rounded-r-none rounded-sm ${!offline && !chat ? 'bg-gray-200' : ''} font-bold`} onClick={() => { setAll(true), setOffline(false), setChat(false) }}>All</button>
-                                            <button className={`btn btn-sm rounded-none shadow-none font-bold ${chat ? 'bg-gray-200' : ''}`} onClick={() => { setChat(true), setAll(false), setOffline(false) }}>Chat</button>
-                                            <button className={`btn btn-sm shadow-none rounded-r-sm rounded-l-none font-bold ${offline ? 'bg-gray-200' : ''}`} onClick={() => { setOffline(true), setAll(false), setChat(false) }}>Offline</button>
+                            <ul className={`text-dark w-[388px] font-semibold border border-gray-300 !py-0 ${!offline || all ? 'h-[38rem]' : 'h-[29.8rem]'} rounded absolute z-10 bg-white mt-10 shadow-md`}>
+                                <div className='w-full h-full overflow-y-auto'>
+                                    <div className='w-full flex pl-5 pt-5'>
+                                        <div className='w-[40%]'>
+                                            <h3 className='text-[13px] mt-1'>Search</h3>
                                         </div>
-                                        <div className='flex gap-1.5 mt-6 form-check'>
-                                            <input type="checkbox" name="Unread" id="Unread" className='h-[14px] w-[14px] rounded-full form-check-input' />
-                                            <label className='text-xs form-check-label' htmlFor='Unread'>Unread</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='w-full flex px-5 pt-5'>
-                                    <div className='w-[40%]'>
-                                        <h3 className='text-[13px] mt-1'>Keywords</h3>
-                                    </div>
-                                    <input type="text" className='w-[60%] form-input rounded h-[1.8rem]' />
-                                </div>
-                                <div className='w-full flex px-5 pt-5'>
-                                    <div className='w-[40%]'>
-                                        <h3 className='text-[13px] mt-1'>Date Range</h3>
-                                    </div>
-                                    <div className='w-[60%] grid grid-cols-2 gap-3'>
-                                        <div className="relative">
-                                            <input id="datepicker-range-start" name="start" type="date" className="border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full h-8 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="MM/DD/YY" />
-                                        </div>
-                                        <div className="relative">
-                                            <input id="datepicker-range-end" name="end" type="date" className="border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full h-8 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="MM/DD/YY" />
-                                        </div>
-                                        <div className="relative">
-                                            <input id="datepicker-range-start" name="start" type="date" className="border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full h-8 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="MM/DD/YY" />
-                                        </div>
-                                        <div className="relative">
-                                            <input id="datepicker-range-end" name="end" type="date" className="border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full h-8 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="MM/DD/YY" />
-                                        </div>
-                                    </div>
-                                </div>
-                                {!offline || all ?
-                                    <>
-                                        <hr className='h-1.5 w-[23.6rem] ml-5 mt-5' />
-                                        <h2 className='font-bold text-[#68737D] mt-3 ml-5'>Chats</h2>
-                                        <div className='w-full flex px-5 pt-5'>
-                                            <div className='w-[40%]'>
-                                                <h3 className='text-[13px] mt-1'>At least</h3>
+                                        <div>
+                                            <div className='w-[60%] flex'>
+                                                <button className={`btn btn-sm shadow-none rounded-r-none rounded-sm ${!offline && !chat ? 'bg-gray-200' : ''} font-bold`} onClick={() => { setAll(true), setOffline(false), setChat(false) }}>All</button>
+                                                <button className={`btn btn-sm rounded-none shadow-none font-bold ${chat ? 'bg-gray-200' : ''}`} onClick={() => { setChat(true), setAll(false), setOffline(false) }}>Chat</button>
+                                                <button className={`btn btn-sm shadow-none rounded-r-sm rounded-l-none font-bold ${offline ? 'bg-gray-200' : ''}`} onClick={() => { setOffline(true), setAll(false), setChat(false) }}>Offline</button>
                                             </div>
-                                            <div className='flex gap-3'>
-                                                <input type="number" className='w-[42%] form-input rounded h-[1.8rem]' />
-                                                <h3 className='text-[13px] mt-1 font-normal'>messages</h3>
-                                            </div>
-                                        </div>
-                                        <div className='w-full flex pl-5 pt-6'>
-                                            <div className='w-[36%]'>
-                                                <h3 className='text-[13px] mt-1'>Chat Served</h3>
-                                            </div>
-                                            <div className='flex gap-5 w-[64%]'>
-                                                <div className='flex gap-3 ml-[2px]'>
-                                                    <input type="checkbox" name="Unread" id="Unread" className='h-[14px] w-[14px] rounded-full form-check-input' />
-                                                    <label className='text-xs form-check-label' htmlFor='Unread'>Completed</label>
-                                                </div>
-                                                <div className='flex gap-3 ml-7'>
-                                                    <input type="checkbox" name="Unread" id="Unread" className='h-[14px] w-[14px] rounded-full form-check-input' />
-                                                    <label className='text-xs form-check-label' htmlFor='Unread'>Dropped</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className='w-full flex mt-1.5'>
-                                            <div className='w-[40%]'>&nbsp;</div>
-                                            <div className='60% flex mt-2'>
-                                                <div className='flex gap-1.5 form-check'>
-                                                    <input type="checkbox" name="Unread" id="Unread" className='h-[14px] w-[14px] rounded-full form-check-input' />
-                                                    <label className='text-xs form-check-label' htmlFor='Unread'>Missed</label>
-                                                </div>
-                                                <div className='flex gap-1.5 form-check ml-[4.4rem]'>
-                                                    <input type="checkbox" name="Unread" id="Unread" className='h-[14px] w-[14px] rounded-full form-check-input' />
-                                                    <label className='text-xs form-check-label' htmlFor='Unread'>Unresponsive</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className='w-full flex px-5 pt-3'>
-                                            <h3 className='text-[13px] w-[40%]'>Satisfication rating</h3>
-                                            <div className='flex form-check w-[60%] mr-2.5'>
-                                                <div className='flex gap-1.5 form-check mt-1'>
-                                                    <input type="checkbox" name="Unread" id="Unread" className='h-[14px] w-[14px] rounded-full form-check-input' />
-                                                    <label className='text-xs form-check-label' htmlFor='Unread'>Good</label>
-                                                </div>
-                                                <div className='mt-1 ml-[5rem] flex gap-1.5'>
-                                                    <input type="checkbox" name="Unread" id="Unread" className='h-[14px] w-[14px] rounded-full form-check-input' />
-                                                    <label className='text-xs form-check-label' htmlFor='Unread'>Bad</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className='w-full flex px-5 pt-5'>
-                                            <div className='w-[40%]'>
-                                                <h3 className='text-[13px] mt-1'>Tags</h3>
-                                            </div>
-                                            <div className='w-[60%]'>
-                                                <select id="countries" className="form-input rounded h-[1.8rem] py-0">
-                                                    <option selected>Group by Activity</option>
-                                                    <option value="1">Group by Page title</option>
-                                                    <option value="2">Group by Page Url</option>
-                                                    <option value="3">Group by Country</option>
-                                                </select>
-                                                <h3 className='font-light mt-1.5 text-sm'>Contain any of these tags</h3>
-                                            </div>
-                                        </div>
-                                        <div className='w-full flex px-5 pt-5'>
-                                            <div className='w-[40%]'>
-                                                <h3 className='text-[13px]'>Others</h3>
-                                            </div>
-                                            <div className='w-[60%] gap-3 flex mt-1.5'>
+                                            <div className='flex gap-1.5 mt-6 form-check'>
                                                 <input type="checkbox" name="Unread" id="Unread" className='h-[14px] w-[14px] rounded-full form-check-input' />
-                                                <label className='text-xs form-check-label' htmlFor='Unread'>Triggered</label>
+                                                <label className='text-xs form-check-label' htmlFor='Unread'>Unread</label>
                                             </div>
                                         </div>
-                                    </>
-                                    : ''}
-                                <hr className='h-1.5 w-[23.6rem] ml-5 mt-3' />
-                                <h2 className='font-bold text-[#68737D] mt-3 ml-5'>People</h2>
-                                <div className='w-full flex px-5 pt-5'>
-                                    <div className='w-[40%]'>
-                                        <h3 className='text-[13px] mt-1'>Chat initiated by</h3>
                                     </div>
-                                    <div className='w-[60%]'>
-                                        <select id="countries" className="form-select rounded h-[1.8rem] py-0">
-                                            <option selected>Anyone</option>
-                                            <option value="1">Agents</option>
-                                            <option value="2">Visitors</option>
-                                            <option value="3">Triggered</option>
-                                        </select>
+                                    <div className='w-full flex px-5 pt-5'>
+                                        <div className='w-[40%]'>
+                                            <h3 className='text-[13px] mt-1'>Keywords</h3>
+                                        </div>
+                                        <input type="text" className='w-[60%] form-input rounded h-[1.8rem]' />
                                     </div>
+                                    <div className='w-full flex px-5 pt-5'>
+                                        <div className='w-[40%]'>
+                                            <h3 className='text-[13px] mt-1'>Date Range</h3>
+                                        </div>
+                                        <div className='w-[60%] grid grid-cols-2 gap-3'>
+                                            <div className="relative">
+                                                <input id="datepicker-range-start" name="start" type="date" className="py-1 form-input appearance-none  " placeholder="MM/DD/YY" />
+                                            </div>
+                                            <div className="relative">
+                                                <input id="datepicker-range-end" name="end" type="date" className="py-1 form-input appearance-none  " placeholder="MM/DD/YY" />
+                                            </div>
+                                            <div className="relative">
+                                                <input id="datepicker-range-start" name="start" type="time" className="py-1 form-input" />
+                                            </div>
+                                            <div className="relative">
+                                                <input id="datepicker-range-end" name="end" type="time" className="py-1 form-input" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {!offline || all ?
+                                        <>
+                                            <hr className='h-1.5 w-[23.6rem] ml-5 mt-5' />
+                                            <h2 className='font-bold text-[#68737D] mt-3 ml-5'>Chats</h2>
+                                            <div className='w-full flex px-5 pt-5'>
+                                                <div className='w-[40%]'>
+                                                    <h3 className='text-[13px] mt-1'>At least</h3>
+                                                </div>
+                                                <div className='flex gap-3'>
+                                                    <input type="number" className='w-[42%] form-input rounded h-[1.8rem]' />
+                                                    <h3 className='text-[13px] mt-1 font-normal'>messages</h3>
+                                                </div>
+                                            </div>
+                                            <div className='w-full flex pl-5 pt-6'>
+                                                <div className='w-[36%]'>
+                                                    <h3 className='text-[13px] mt-1'>Chat Served</h3>
+                                                </div>
+                                                <div className='flex gap-5 w-[64%]'>
+                                                    <div className='flex gap-3 ml-[2px]'>
+                                                        <input type="checkbox" name="Unread" id="Unread" className='h-[14px] w-[14px] rounded-full form-check-input' />
+                                                        <label className='text-xs form-check-label' htmlFor='Unread'>Completed</label>
+                                                    </div>
+                                                    <div className='flex gap-3 ml-7'>
+                                                        <input type="checkbox" name="Unread" id="Unread" className='h-[14px] w-[14px] rounded-full form-check-input' />
+                                                        <label className='text-xs form-check-label' htmlFor='Unread'>Dropped</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className='w-full flex mt-1.5'>
+                                                <div className='w-[40%]'>&nbsp;</div>
+                                                <div className='60% flex mt-2'>
+                                                    <div className='flex gap-1.5 form-check'>
+                                                        <input type="checkbox" name="Unread" id="Unread" className='h-[14px] w-[14px] rounded-full form-check-input' />
+                                                        <label className='text-xs form-check-label' htmlFor='Unread'>Missed</label>
+                                                    </div>
+                                                    <div className='flex gap-1.5 form-check ml-[4.4rem]'>
+                                                        <input type="checkbox" name="Unread" id="Unread" className='h-[14px] w-[14px] rounded-full form-check-input' />
+                                                        <label className='text-xs form-check-label' htmlFor='Unread'>Unresponsive</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className='w-full flex px-5 pt-3'>
+                                                <h3 className='text-[13px] w-[40%]'>Satisfication rating</h3>
+                                                <div className='flex form-check w-[60%] mr-2.5'>
+                                                    <div className='flex gap-1.5 form-check mt-1'>
+                                                        <input type="checkbox" name="Unread" id="Unread" className='h-[14px] w-[14px] rounded-full form-check-input' />
+                                                        <label className='text-xs form-check-label' htmlFor='Unread'>Good</label>
+                                                    </div>
+                                                    <div className='mt-1 ml-[5rem] flex gap-1.5'>
+                                                        <input type="checkbox" name="Unread" id="Unread" className='h-[14px] w-[14px] rounded-full form-check-input' />
+                                                        <label className='text-xs form-check-label' htmlFor='Unread'>Bad</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className='w-full flex px-5 pt-5'>
+                                                <div className='w-[40%]'>
+                                                    <h3 className='text-[13px] mt-1'>Tags</h3>
+                                                </div>
+                                                <div className='w-[60%]'>
+                                                    <select id="countries" className="form-input rounded h-[1.8rem] py-0">
+                                                        <option selected>Group by Activity</option>
+                                                        <option value="1">Group by Page title</option>
+                                                        <option value="2">Group by Page Url</option>
+                                                        <option value="3">Group by Country</option>
+                                                    </select>
+                                                    <h3 className='font-light mt-1.5 text-sm'>Contain any of these tags</h3>
+                                                </div>
+                                            </div>
+                                            <div className='w-full flex px-5 pt-5'>
+                                                <div className='w-[40%]'>
+                                                    <h3 className='text-[13px]'>Others</h3>
+                                                </div>
+                                                <div className='w-[60%] gap-3 flex mt-1.5'>
+                                                    <input type="checkbox" name="Unread" id="Unread" className='h-[14px] w-[14px] rounded-full form-check-input' />
+                                                    <label className='text-xs form-check-label' htmlFor='Unread'>Triggered</label>
+                                                </div>
+                                            </div>
+                                        </>
+                                        : ''}
+                                    <hr className='h-1.5 w-[23.6rem] ml-5 mt-3' />
+                                    <h2 className='font-bold text-[#68737D] mt-3 ml-5'>People</h2>
+                                    <div className='w-full flex px-5 pt-5'>
+                                        <div className='w-[40%]'>
+                                            <h3 className='text-[13px] mt-1'>Chat initiated by</h3>
+                                        </div>
+                                        <div className='w-[60%]'>
+                                            <select id="countries" className="form-select rounded h-[1.8rem] py-0">
+                                                <option selected>Anyone</option>
+                                                <option value="1">Agents</option>
+                                                <option value="2">Visitors</option>
+                                                <option value="3">Triggered</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div className='w-full flex px-5 pt-5'>
+                                        <div className='w-[40%]'>
+                                            <h3 className='text-[13px] mt-1'>Visitor name</h3>
+                                        </div>
+                                        <input type="text" className='w-[60%] form-input rounded h-[1.8rem]' />
+                                    </div>
+                                    {!offline ?
+                                        <>
+                                            <div className='w-full flex px-5 pt-5'>
+                                                <div className='w-[40%]'>
+                                                    <h3 className='text-[13px] mt-1'>Visitor email</h3>
+                                                </div>
+                                                <input type="text" className='w-[60%] form-input rounded h-[1.8rem]' />
+                                            </div>
+                                            <div className='w-full flex px-5 pt-5'>
+                                                <div className='w-[40%]'>
+                                                    <h3 className='text-[13px] mt-1'>Agent name</h3>
+                                                </div>
+                                                <input type="text" className='w-[60%] form-input rounded h-[1.8rem]' />
+                                            </div>
+                                        </>
+                                        : <div className='h-4'></div>}
                                 </div>
-                                <div className='w-full flex px-5 pt-5'>
-                                    <div className='w-[40%]'>
-                                        <h3 className='text-[13px] mt-1'>Visitor name</h3>
-                                    </div>
-                                    <input type="text" className='w-[60%] form-input rounded h-[1.8rem]' />
-                                </div>
-                                {!offline ?
-                                    <>
-                                        <div className='w-full flex px-5 pt-5'>
-                                            <div className='w-[40%]'>
-                                                <h3 className='text-[13px] mt-1'>Visitor email</h3>
-                                            </div>
-                                            <input type="text" className='w-[60%] form-input rounded h-[1.8rem]' />
-                                        </div>
-                                        <div className='w-full flex px-5 pt-5'>
-                                            <div className='w-[40%]'>
-                                                <h3 className='text-[13px] mt-1'>Agent name</h3>
-                                            </div>
-                                            <input type="text" className='w-[60%] form-input rounded h-[1.8rem]' />
-                                        </div>
-                                    </>
-                                    : <div className='h-4'></div>}
-                                <div className='mt-6 relative bottom-0 h-12 w-full px-2 bg-[#EBEBEB] gap-3 flex justify-end pt-2.5'>
+                                <div className='h-12 absolute bottom-0 w-full px-2 bg-[#EBEBEB] gap-3 flex justify-end pt-2.5'>
                                     <button className='btn btn-sm shadow-none rounded border border-info btn-info h-8' onClick={() => setShow(false)}>Search</button>
                                     <button className='btn btn-sm rounded shadow-none border h-8 border-gray-300' onClick={() => setShow(false)}>Cancel</button>
                                 </div>
