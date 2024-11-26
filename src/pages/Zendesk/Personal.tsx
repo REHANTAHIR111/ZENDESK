@@ -29,6 +29,8 @@ export default function Personal() {
   const [idletimeOf, setidletimeOf] = useState<any>(false);
   const [idletimeOn, setidletimeOn] = useState<any>(true);
 
+  localStorage.setItem('img', image)
+
 
   const handleButtonClick = () => {
     if (fileInputRef.current) {

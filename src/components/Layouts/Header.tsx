@@ -288,10 +288,13 @@ const Header = () => {
                                         <button onClick={() => localStorage.setItem('header', 'Personal')}>
                                             <Link to={`/zendesk/personal`} className="dark:hover:text-white">
                                                 <div className="flex items-center px-6 py-[-1]">
-                                                    <img src="https://dashboard-latest.zopim.com/dashboard/images/agent-default-avatar.png" className="w-[37px] h-[37px] rounded-full object-cover border border-[#BBBBBB] saturate-50 group-hover:saturate-100" />
-                                                    <div className="ltr:pl-4 truncate">
+                                                    <img src={localStorage.getItem('img')} className="w-[37px] h-[37px] rounded-full object-cover border border-[#BBBBBB] saturate-50 group-hover:saturate-100" />
+                                                    <div className="ltr:pl-4 truncate text-left">
                                                         <h4 className="text-sm">
-                                                            Elizabeth
+                                                            {localStorage.getItem('email')
+                                                                ? localStorage.getItem('email')!.split('@')[0]
+                                                                : 'Zac Ellis'
+                                                            } 
                                                             {/* <span className="text-xs bg-success-light rounded text-success px-1 ltr:ml-2 rtl:ml-2">Pro</span> */}
                                                         </h4>
                                                         <h6 className="text-[0.7rem]">

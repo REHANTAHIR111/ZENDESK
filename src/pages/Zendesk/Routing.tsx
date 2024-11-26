@@ -189,7 +189,7 @@ export default function Routing() {
                     <p className='text-xs mt-2.5 text-gray-500'>Limit the number of chats that each agent is allowed to take at one time.</p>
                     <div className='w-full rounded border border-[#F4B500] h-10 flex gap-3 px-4 pt-3 mt-2.5'>
                       <IconWarning/>
-                      <p className='text-xs'>All incoming chats will be assigned immediately, even if agents are already serving many chats.</p>
+                      <p><small>All incoming chats will be assigned immediately, even if agents are already serving many chats.</small></p>
                     </div>
                     <div className='w-full flex'>
                       <div className='w-[20%]'>

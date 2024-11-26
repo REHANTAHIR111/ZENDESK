@@ -40,22 +40,22 @@ export default function addDepartment() {
                 </div>
                 <div className='flex mt-8 w-full'>
                     <h3 className='w-[30.8%] mt-1.5 text-gray-700'>Department agents</h3>
-                    <div className='mt-1.5 w-full'>
-                        {add ? 
-                            <div className='bg-[#D8D8D8] font-bold py-1  px-2.5 rounded w-[5rem]'>
-                                <button className='flex' onClick={() => setAdd(false)}><IconMinus className='h-3 w-3 mt-0.5 mr-0.5'/> Zac Ellis</button>
-                            </div>
-                        : 
-                            <p className='text-gray-500'>No agents yet</p>
-                        }    
-                        <hr className='mt-8'/>
-                        {!add ? <p className='text-gray-500 mt-7'>Select at least 1 active agent to add to this department</p> : <p className='text-gray-500 mt-7'>No agents left to add</p> }
-                        {!add ?
-                            <div className='bg-[#D8D8D8] font-bold py-1  px-2.5 rounded w-[5rem] mt-3 '>
-                                <button className='flex' onClick={() => setAdd(true)}><IconPlus className='h-3 w-3 mt-0.5 mr-0.5'/> Zac Ellis</button>
-                            </div>
-                        :''}    
-                    </div>  
+                        <div className='mt-1.5 w-full'>
+                            {add ? 
+                                <div className='bg-[#D8D8D8] font-bold py-1  px-2.5 rounded w-[5rem]'>
+                                    <button className='flex' onClick={() => setAdd(false)}><IconMinus className='h-3 w-3 mt-0.5 mr-0.5'/> Zac Ellis</button>
+                                </div>
+                            : 
+                                <p className='text-gray-500'>No agents yet</p>
+                            }    
+                            <hr className='mt-8'/>
+                            {!add ? <p className='text-gray-500 mt-7'>Select at least 1 active agent to add to this department</p> : <p className='text-gray-500 mt-7'>No agents left to add</p> }
+                            {!add ?
+                                <div className='bg-[#D8D8D8] font-bold py-1  px-2.5 rounded w-[5rem] mt-3 '>
+                                    <button className='flex' onClick={() => setAdd(true)}><IconPlus className='h-3 w-3 mt-0.5 mr-0.5'/> Zac Ellis</button>
+                                </div>
+                            :''}    
+                        </div>  
                 </div>
                 <hr className='bg-gray-200 mt-12' />
                 <div className='flex mt-4 flex gap-3'>

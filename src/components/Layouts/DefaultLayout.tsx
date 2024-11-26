@@ -9,14 +9,15 @@ import Header from './Header';
 import Setting from './Setting';
 import Sidebar from './Sidebar';
 import Portals from '../../components/Portals';
+import ChatWindow from './chatWindow';
 
 const DefaultLayout = ({ children }: PropsWithChildren) => {
     const navigate = useNavigate();
     const themeConfig = useSelector((state: IRootState) => state.themeConfig);
     const dispatch = useDispatch();
 
-    const [showLoader, setShowLoader] = useState(true);
-    const [showTopButton, setShowTopButton] = useState(false);
+    const [showLoader, setShowLoader] = useState<any>(true);
+    const [showTopButton, setShowTopButton] = useState<any>(false);
 
     const goToTop = () => {
         document.body.scrollTop = 0;
@@ -97,6 +98,7 @@ const DefaultLayout = ({ children }: PropsWithChildren) => {
                         {/* BEGIN CONTENT AREA */}
                         <Suspense>
                             <div className={`${themeConfig.animation} px-6 py-5 animate__animated`}>{children}</div>
+                            <ChatWindow />  
                         </Suspense>
                         {/* END CONTENT AREA */}
 

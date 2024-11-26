@@ -280,7 +280,7 @@ export default function Widget() {
               </>
               : select == 2 ?
                 <>
-                  <div className='p-10 text-white rounded-t-lg relative flex justify-between h-40' style={{ backgroundImage: 'url("https://v2assets.zopim.io/JHCfOsl2bT75lsNA6tisF9vp3LQiGPaV-banner?1668554852212")' }}>
+                  <div className='p-10 text-white rounded-t-lg relative flex justify-between h-40 bg-cover' style={{ backgroundImage: `url(${mediaimage == 'https://via.placeholder.com/150' ? '' : mediaimage})` }}>
                     <span className='text-white absolute top-2 w-full ml-12'>zendesk chat</span>
                     <span className='text-white rounded relative h-6 w-10 items-center pl-3 text-center pt-0.5 left-44 bottom-9 ' style={{background:sameColor ? changeColor : changeBgColor}}><IconMinus/></span>
                   </div>
@@ -841,7 +841,7 @@ export default function Widget() {
                     <p className='font-normal text-xs text-gray-500 mt-1.5 ml-28'>For security reasons, we only display the first seven characters of your shared secret.</p>
                   </div>
                   <hr className='bg-gray-200 w-[48%] mt-5' />
-                  <div className='flex mt-4 flex gap-3 mb-4'>
+                  <div className='flex mt-4 gap-3 mb-4'>
                     <button className='btn btn-sm bg-[#1F73B7] shadow-none text-white rounded font-bold '>Save changes</button>
                     <button className='btn btn-sm border border-gray-300 hover:bg-gray-200 font-bold shadow-none rounded'>Revert changes</button>
                   </div>
